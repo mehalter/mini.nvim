@@ -279,7 +279,6 @@ MiniDoc.config = {
       ['@return'] = function(s)
         H.mark_optional(s)
         H.enclose_type(s, '`%(%1%)`', 1)
-        H.add_section_heading(s, 'Return')
       end,
       --minidoc_replace_end
       --minidoc_replace_start ['@seealso'] = --<function>,
@@ -337,7 +336,7 @@ MiniDoc.config = {
     block_post = function(b)
       if not b:has_lines() then return end
 
-      local found_param, found_field = false, false
+      local found_param, found_field, found_return = false, false, false
       local n_tag_sections, last_line = 0, nil
       H.apply_recursively(function(x)
         if not (type(x) == 'table' and x.type == 'section') then return end
@@ -351,6 +350,10 @@ MiniDoc.config = {
         if not found_field and x.info.id == '@field' then
           H.add_section_heading(x, 'Fields')
           found_field = true
+        end
+        if not found_return and x.info.id == '@return' then
+          H.add_section_heading(x, 'Return')
+          found_return = true
         end
 
         if x.info.id == '@tag' then

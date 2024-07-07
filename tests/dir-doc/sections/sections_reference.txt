@@ -175,7 +175,6 @@ Test for expanding `?` to `(optional)`
 
 Return ~
 `(number)` `(optional)`
-Return ~
 `(boolean)` `(optional)` Second ? shouldn't trigger anything.
 
 ------------------------------------------------------------------------------
@@ -183,21 +182,13 @@ Test for enclosing type
 
 Return ~
 `(number)` Should work.
-Return ~
 `(number[])` Should work.
-Return ~
 `(number|nil)` Should work.
-Return ~
 `(table<string, number>)` Should work.
-Return ~
 `(fun(a: string, b:number))` Should work.
-Return ~
 `(fun(a: string, b:number): table)` Should work.
-Return ~
 NUMBER Shouldn't work.
-Return ~
 `(function)` Should not enclose second time: function .
-Return ~
 `(...)` Should work.
 
 
